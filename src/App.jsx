@@ -1,19 +1,11 @@
-import { ContactForm } from 'components/Form/Form';
-import { ContactList } from 'components/ContactList/ContactList';
-import { Filter } from 'components/Filter/Filter';
-import { Container } from 'components/common/Container.styled';
+import { Contacts } from 'pages/Contacts/Contacts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
-
   return (
-    <Container>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
+    <>
+      <Contacts />
       <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -25,6 +17,6 @@ export const App = () => {
         draggable
         pauseOnHover
       />
-    </Container>
+    </>
   );
 };
