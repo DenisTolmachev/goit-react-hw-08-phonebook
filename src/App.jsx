@@ -4,9 +4,13 @@ import { Routes, Route } from 'react-router-dom';
 import { LoaderSpinner } from 'components/common/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import StartPage from 'pages/StartPage/StartPage';
+//import StartPage from 'pages/StartPage/StartPage';
 
-//const Contacts = lazy(() => import('pages/Contacts/Contacts'));
+
+const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
+const StartPage = lazy(() => import('pages/StartPage/StartPage'))
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'))
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'))
 
 export const App = () => {
   return (
@@ -15,11 +19,14 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<StartPage/>} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='register' element={<RegisterPage />} />
+            <Route path='contacts' element={<ContactsPage />} />
           </Route>
         </Routes>
       </Suspense>
 
-      {/* <Contacts /> */}
+      {/* <ContactsPage /> */}
 
       <ToastContainer
         position="top-center"

@@ -1,13 +1,5 @@
-
-
 const StartPage = () => {
-  
-
-  return (
-    <>
-      Hello World
-    </>
-  );
+  return <>Hello World</>;
 };
 
 export default StartPage;
