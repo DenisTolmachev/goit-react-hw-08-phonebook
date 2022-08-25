@@ -1,17 +1,17 @@
-import { NavLink } from 'react-router-dom';
-import { HeaderStyle, Logo, LogoIcon } from './Header.style';
+import { HeaderStyle, Logo, LogoText, LogoIcon, HeaderNav, LinkStyle } from './Header.style';
+import logoIcon from 'img/logoIcon.png'
 
 export const Header = () => {
   return (
     <HeaderStyle>
-      <Logo>
-        <p>Phonebook</p>
-        <LogoIcon src="img/phonebook-icon1.png" alt="Phonebook-icon" />
+      <Logo to="/">
+        <LogoText>Phonebook</LogoText>
+        <LogoIcon src={logoIcon} alt="Phonebook-icon" />
       </Logo>
-      <nav>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/register">Register</NavLink>
-      </nav>
+      <HeaderNav>
+        <LinkStyle to="/login">LogIn</LinkStyle>
+        <LinkStyle to="/register">Register</LinkStyle>
+      </HeaderNav>
     </HeaderStyle>
   );
 };
