@@ -44,4 +44,7 @@ export const LinkStyle = styled(NavLink)`
     color: ${({ theme }) => theme.colors.white};
     box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.white};
   }
+  :not(:last-child) {
+    margin-right: 10px;
+  }
 `;
