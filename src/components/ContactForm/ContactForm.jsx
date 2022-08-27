@@ -6,7 +6,7 @@ import {
   ContactFormLabel,
   ContactFormInput,
   ErrorText,
-} from './Form.styled';
+} from './ContactForm.styled';
 import { Button } from 'components/common/Button.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getItems } from 'store/contacts/contactsSelectors';
