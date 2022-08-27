@@ -7,6 +7,8 @@ import {
   InputFeedback,
   Label,
   FormStyled,
+  ChangeForm,
+  ChangeLink
 } from '../common/Form.styled';
 
 const mySchema = yup.object().shape({
@@ -96,6 +98,6 @@ export const RegisterForm = () => (
         );
       }}
     </Formik>
-    <div>Already have account? Log in</div>
+    <ChangeForm>Already have account? <ChangeLink to="/login">Login</ChangeLink></ChangeForm>
   </>
 );

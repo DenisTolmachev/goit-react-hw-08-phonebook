@@ -1,7 +1,15 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { FormTitle, Input, InputFeedback, Label, FormStyled } from '../common/Form.styled';
+import {
+  FormTitle,
+  Input,
+  InputFeedback,
+  Label,
+  FormStyled,
+  ChangeForm,
+  ChangeLink
+} from '../common/Form.styled';
 
 const mySchema = yup.object().shape({
   email: yup.string().email().required('No email provided.'),
@@ -75,6 +83,8 @@ export const LoginForm = () => (
         );
       }}
     </Formik>
-    <div>Don't have account? Register</div>
+    <ChangeForm>
+      Don't have account? <ChangeLink to="/register">Register</ChangeLink>
+    </ChangeForm>
   </>
 );
