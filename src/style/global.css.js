@@ -11,7 +11,7 @@ export default createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
     }
 
-    h1, h2 {
+    h1, h2, h3 {
         color:${({ theme }) => theme.colors.primary}
     }
 

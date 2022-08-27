@@ -79,12 +79,13 @@ export const LoginForm = () => (
             <Button type="submit" disabled={isSubmitting}>
               LogIn
             </Button>
+            
           </FormStyled>
         );
       }}
     </Formik>
     <ChangeForm>
-      Don't have account? <ChangeLink to="/register">Register</ChangeLink>
+      Don't have account? <ChangeLink to="/register">SginUp</ChangeLink>
     </ChangeForm>
   </>
 );

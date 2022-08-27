@@ -27,6 +27,7 @@ export const theme = {
     ml: '24px',
     ml1: '28px',
     l: '32px',
+    l1: '48px',
     xl: '64px',
   },
 
