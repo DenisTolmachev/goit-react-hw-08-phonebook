@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  padding: 5px 10px;
+  padding: 10px 10px;
   margin: 5px 10px;
   font-size: ${({ theme }) => theme.fontSizes.m};
   text-transform: capitalize;

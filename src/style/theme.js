@@ -10,7 +10,7 @@ export const theme = {
     muted: '#f1f1f2', //Снежное облако
     border: '#E4E9F0',
     online: '#00ff00',
-    offline: 'red',
+    error: 'red',
   },
 
   fonts: {
