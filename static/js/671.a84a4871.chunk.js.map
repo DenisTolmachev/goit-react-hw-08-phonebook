@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/671.a84a4871.chunk.js","mappings":"gKAIA,UAJkB,WAChB,OAAO","sources":["pages/StartPage/StartPage.jsx"],"sourcesContent":["const StartPage = () => {\n  return <>Hello World</>;\n};\n\nexport default StartPage;\n"],"names":[],"sourceRoot":""}
