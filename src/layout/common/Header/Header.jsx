@@ -10,7 +10,7 @@ export const Header = () => {
       </Logo>
       <HeaderNav>
         <LinkStyle to="/login">LogIn</LinkStyle>
-        <LinkStyle to="/register">Register</LinkStyle>
+        <LinkStyle to="/register">SignUp</LinkStyle>
       </HeaderNav>
     </HeaderStyle>
   );

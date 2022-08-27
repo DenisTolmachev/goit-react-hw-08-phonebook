@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
+export const FormTitle = styled.h1`
+  text-align: center;
+`;
+
 export const FormStyled = styled(Form)`
   max-width: 500px;
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
 `;
 

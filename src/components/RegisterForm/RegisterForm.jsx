@@ -1,7 +1,13 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { FormTitle, Input, InputFeedback, Label, FormStyled } from '../common/Form.styled';
+import {
+  FormTitle,
+  Input,
+  InputFeedback,
+  Label,
+  FormStyled,
+} from '../common/Form.styled';
 
 const mySchema = yup.object().shape({
   email: yup.string().email().required('No email provided.'),
@@ -12,11 +18,11 @@ const mySchema = yup.object().shape({
     .matches(/(?=.*[0-9])/, 'Password must contain a number.'),
 });
 
-export const LoginForm = () => (
+export const RegisterForm = () => (
   <>
-    <FormTitle>Аccount login</FormTitle>
+    <FormTitle>Create Account</FormTitle>
     <Formik
-      initialValues={{ email: '', password: '' }}
+      initialValues={{ name: '', email: '', password: '' }}
       validationSchema={mySchema}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -38,6 +44,21 @@ export const LoginForm = () => (
 
         return (
           <FormStyled onSubmit={handleSubmit}>
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Enter your name"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.name && touched.name && 'error'}
+            />
+            {errors.name && touched.name && (
+              <InputFeedback>{errors.name}</InputFeedback>
+            )}
+
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
@@ -69,12 +90,12 @@ export const LoginForm = () => (
             )}
 
             <Button type="submit" disabled={isSubmitting}>
-              LogIn
+              SignUp
             </Button>
           </FormStyled>
         );
       }}
     </Formik>
-    <div>Don't have account? Register</div>
+    <div>Already have account? Log in</div>
   </>
 );
