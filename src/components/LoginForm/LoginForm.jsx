@@ -1,12 +1,7 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import {
-  Input,
-  InputFeedback,
-  Label,
-  LoginFormStyled,
-} from './LoginForm.styled';
+import { Input, InputFeedback, Label, FormStyled } from '../common/Form.styled';
 
 const mySchema = yup.object().shape({
   email: yup.string().email().required('No email provided.'),
@@ -40,7 +35,7 @@ export const LoginForm = () => (
       } = props;
 
       return (
-        <LoginFormStyled onSubmit={handleSubmit}>
+        <FormStyled onSubmit={handleSubmit}>
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
@@ -74,7 +69,7 @@ export const LoginForm = () => (
           <Button type="submit" disabled={isSubmitting}>
             Login
           </Button>
-        </LoginFormStyled>
+        </FormStyled>
       );
     }}
   </Formik>

@@ -1,17 +1,17 @@
 import { Formik, ErrorMessage } from 'formik';
 import shortid from 'shortid';
 import * as yup from 'yup';
-import {
-  ContactFormForm,
-  ContactFormLabel,
-  ContactFormInput,
-  ErrorText,
-} from './ContactForm.styled';
 import { Button } from 'components/common/Button.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getItems } from 'store/contacts/contactsSelectors';
 import { addNewContact } from 'store/contacts/contactsOperations';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
+import {
+  FormStyled,
+  Label,
+  Input,
+  InputFeedback,
+} from 'components/common/Form.styled';
 
 const phoneRegex = RegExp(
   /\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/
@@ -79,10 +79,10 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
     >
       {props => (
-        <ContactFormForm>
-          <ContactFormLabel>
+        <FormStyled>
+          <Label>
             Name
-            <ContactFormInput
+            <Input
               type="text"
               name="name"
               placeholder="Rosie Simpson"
@@ -91,12 +91,12 @@ export const ContactForm = () => {
             />
             <ErrorMessage
               name="name"
-              render={msg => <ErrorText>{msg}</ErrorText>}
+              render={msg => <InputFeedback>{msg}</InputFeedback>}
             />
-          </ContactFormLabel>
-          <ContactFormLabel>
+          </Label>
+          <Label>
             Number
-            <ContactFormInput
+            <Input
               type="tel"
               name="number"
               placeholder="Enter 7 digits"
@@ -105,11 +105,11 @@ export const ContactForm = () => {
             />
             <ErrorMessage
               name="number"
-              render={msg => <ErrorText>{msg}</ErrorText>}
+              render={msg => <InputFeedback>{msg}</InputFeedback>}
             />
-          </ContactFormLabel>
+          </Label>
           <Button type="submit">Add contact</Button>
-        </ContactFormForm>
+        </FormStyled>
       )}
     </Formik>
   );

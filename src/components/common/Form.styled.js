@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form, Field } from 'formik';
 
-export const LoginFormStyled = styled.form`
+export const FormStyled = styled(Form)`
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
@@ -14,7 +15,7 @@ export const Label = styled.label`
   height: 22px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 100%;
   margin-top: 10px;
   margin-bottom: 20px;
