@@ -1,5 +1,5 @@
 const StartPage = () => {
-  return <>Hello World</>;
+  return <>To continue login or register</>;
 };
 
 export default StartPage;

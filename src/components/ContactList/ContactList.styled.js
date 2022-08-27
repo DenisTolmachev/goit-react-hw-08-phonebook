@@ -9,7 +9,12 @@ export const ContactListItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px;
+  padding: 5px;
+  &:not(:last-child) {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  }
+  
+  
 `;
 
 export const ContactsListText = styled.p`
