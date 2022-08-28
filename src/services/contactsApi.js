@@ -3,15 +3,6 @@ import { BASE_URL } from 'constants/constants';
 
 axios.defaults.baseURL = BASE_URL;
 
-export const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  }
-};
-
 export const getContacts = async () => {
   return await axios.get(`/contacts`).then(response => response.data);
 };
