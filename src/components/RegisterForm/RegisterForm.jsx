@@ -1,5 +1,8 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router';
+import { registerUser } from 'store/auth/authOperations';
 import * as yup from 'yup';
 import {
   FormTitle,
@@ -8,10 +11,22 @@ import {
   Label,
   FormStyled,
   ChangeForm,
-  ChangeLink
+  ChangeLink,
 } from '../common/Form.styled';
 
+const nameRegex = RegExp(
+  /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
+);
+
 const mySchema = yup.object().shape({
+  name: yup
+    .string()
+    .min(2)
+    .matches(
+      nameRegex,
+      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+    )
+    .required('No name provided.'),
   email: yup.string().email().required('No email provided.'),
   password: yup
     .string()
@@ -20,84 +35,96 @@ const mySchema = yup.object().shape({
     .matches(/(?=.*[0-9])/, 'Password must contain a number.'),
 });
 
-export const RegisterForm = () => (
-  <>
-    <FormTitle>Create Account</FormTitle>
-    <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      validationSchema={mySchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          console.log('Logging in', values);
-          setSubmitting(false);
-        }, 500);
-      }}
-    >
-      {props => {
-        const {
-          values,
-          touched,
-          errors,
-          isSubmitting,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-        } = props;
+export const RegisterForm = () => {
+  const dispatch = useDispatch();
 
-        return (
-          <FormStyled onSubmit={handleSubmit}>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Enter your name"
-              value={values.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.name && touched.name && 'error'}
-            />
-            {errors.name && touched.name && (
-              <InputFeedback>{errors.name}</InputFeedback>
-            )}
+  const handleSubmit = (values, { resetForm }) => {
+    const user = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(registerUser(user));
+    <Navigate to="contacts" replace={true} />;
+    resetForm();
+  };
 
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              type="text"
-              placeholder="Enter your email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.email && touched.email && 'error'}
-            />
-            {errors.email && touched.email && (
-              <InputFeedback>{errors.email}</InputFeedback>
-            )}
+  return (
+    <>
+      <FormTitle>Create Account</FormTitle>
+      <Formik
+        initialValues={{ name: '', email: '', password: '' }}
+        validationSchema={mySchema}
+        onSubmit={handleSubmit}
+      >
+        {props => {
+          const {
+            values,
+            touched,
+            errors,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          } = props;
 
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.password && touched.password && 'error'}
-            />
-            {errors.password && touched.password && (
-              <InputFeedback>{errors.password}</InputFeedback>
-            )}
+          return (
+            <FormStyled onSubmit={handleSubmit}>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.name && touched.name && 'error'}
+              />
+              {errors.name && touched.name && (
+                <InputFeedback>{errors.name}</InputFeedback>
+              )}
 
-            <Button type="submit" disabled={isSubmitting}>
-              SignUp
-            </Button>
-          </FormStyled>
-        );
-      }}
-    </Formik>
-    <ChangeForm>Already have account? <ChangeLink to="/login">Login</ChangeLink></ChangeForm>
-  </>
-);
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="text"
+                placeholder="Enter your email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.email && touched.email && 'error'}
+              />
+              {errors.email && touched.email && (
+                <InputFeedback>{errors.email}</InputFeedback>
+              )}
+
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.password && touched.password && 'error'}
+              />
+              {errors.password && touched.password && (
+                <InputFeedback>{errors.password}</InputFeedback>
+              )}
+
+              <Button type="submit" disabled={isSubmitting}>
+                SignUp
+              </Button>
+            </FormStyled>
+          );
+        }}
+      </Formik>
+      <ChangeForm>
+        Already have account? <ChangeLink to="/login">Login</ChangeLink>
+      </ChangeForm>
+    </>
+  );
+};
