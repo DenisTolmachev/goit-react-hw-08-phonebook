@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://62f8f320e0564480352fc15c.mockapi.io';
+export const BASE_URL = 'https://connections-api.herokuapp.com/';

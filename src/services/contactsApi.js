@@ -3,6 +3,15 @@ import { BASE_URL } from 'constants/constants';
 
 axios.defaults.baseURL = BASE_URL;
 
+export const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  }
+};
+
 export const getContacts = async () => {
   return await axios.get(`/contacts`).then(response => response.data);
 };
@@ -13,4 +22,10 @@ export const addContact = async contact => {
 
 export const deleteContact = async id => {
   return await axios.delete(`/contacts/${id}`).then(() => id);
+};
+
+export const updateContact = async ({ id, name, number }) => {
+  return await axios
+    .patch(`/contacts/${id}`, { name, number })
+    .then(response => response.data);
 };
