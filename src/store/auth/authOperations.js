@@ -10,7 +10,7 @@ export const registerUser = createAsyncThunk(
       API.token.set(data.token);
       return data;
     } catch (error) {
-      return toast.error(error);
+      toast.error(`Please try to use other details. ${error.message}`);
     }
   }
 );
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async user => {
     API.token.set(data.token);
     return data;
   } catch (error) {
-    return toast.error(error);
+    toast.error(`Please try to use other details. ${error.message}`);
   }
 });
 
@@ -30,7 +30,7 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
     await API.logout();
     API.token.unset();
   } catch (error) {
-    return toast.error(error);
+    toast.error(`Please try to use other details. ${error.message}`);
   }
 });
 
@@ -48,7 +48,7 @@ export const getUserData = createAsyncThunk(
       const data = await API.userData();
       return data;
     } catch (error) {
-      return toast.error(error);
+        toast.error(`Please try to use other details. ${error.message}`);
     }
   }
 );
