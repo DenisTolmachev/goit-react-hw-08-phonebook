@@ -23,3 +23,7 @@ export const token = {
   export const logout = async () => {
     return await axios.post(`/users/logout`).then(response => response.data);
   }
+
+  export const userData = async () => {
+    return await axios.get(`/users/current`).then(response => response.data);
+  }
