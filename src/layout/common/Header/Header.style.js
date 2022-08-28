@@ -9,24 +9,6 @@ export const HeaderStyle = styled.header`
   padding: 10px 10px;
 `;
 
-export const Logo = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-`;
-
-export const LogoText = styled.div`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ml};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  margin-right: 10px;
-`;
-
-export const LogoIcon = styled.img`
-  height: 30px;
-  width: 30px;
-`;
-
 export const HeaderNav = styled.nav``;
 
 export const LinkStyle = styled(NavLink)`
