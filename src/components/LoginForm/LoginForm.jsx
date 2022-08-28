@@ -1,5 +1,8 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router';
+import { loginUser } from 'store/auth/authOperations';
 import * as yup from 'yup';
 import {
   FormTitle,
@@ -21,18 +24,25 @@ const mySchema = yup.object().shape({
 });
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, { resetForm }) => {
+    const user = {
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(loginUser(user));
+    <Navigate to="contacts" replace={true} />;
+    resetForm();
+  };
+
   return (
     <>
       <FormTitle>Аccount login</FormTitle>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={mySchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            console.log('Logging in', values);
-            setSubmitting(false);
-          }, 500);
-        }}
+        onSubmit={handleSubmit}
       >
         {props => {
           const {
