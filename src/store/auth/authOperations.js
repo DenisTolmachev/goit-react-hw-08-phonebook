@@ -33,3 +33,22 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
     return toast.error(error);
   }
 });
+
+export const getUserData = createAsyncThunk(
+  'auth/userData',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      toast.warn('You are not logged in');
+    }
+    API.token.set(persistedToken);
+    try {
+      const data = await API.userData();
+      return data;
+    } catch (error) {
+      return toast.error(error);
+    }
+  }
+);
