@@ -12,7 +12,7 @@ export const Header = () => {
   return (
     <HeaderStyle>
       <AppLogo />
-      <Link to='/contacts'>ContactsDemo</Link>
+      <Link to='/contacts' style={{color: 'white'}}>ContactsDemo</Link>
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </HeaderStyle>
   );
