@@ -48,7 +48,7 @@ export const getUserData = createAsyncThunk(
       const data = await API.userData();
       return data;
     } catch (error) {
-        toast.error(`Please try to use other details. ${error.message}`);
+      // toast.error(`Please try to use other details. ${error.message}`);
     }
   }
 );

@@ -1,27 +1,33 @@
 import { SharedLayout } from 'layout/SharedLayout';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { LoaderSpinner } from 'components/common/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//import StartPage from 'pages/StartPage/StartPage';
-
+import { useDispatch } from 'react-redux';
+import { getUserData } from 'store/auth/authOperations';
 
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
-const Home = lazy(() => import('pages/Home/Home'))
-const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'))
-const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'))
+const Home = lazy(() => import('pages/Home/Home'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
+
   return (
     <>
       <Suspense fallback={<LoaderSpinner />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home/>} />
-            <Route path='login' element={<LoginPage />} />
-            <Route path='register' element={<RegisterPage />} />
-            <Route path='contacts' element={<ContactsPage />} />
+            <Route index element={<Home />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="contacts" element={<ContactsPage />} />
           </Route>
         </Routes>
       </Suspense>
