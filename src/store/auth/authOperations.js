@@ -41,7 +41,7 @@ export const getUserData = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      toast.warn('You are not logged in');
+      return thunkAPI.rejectWithValue();
     }
     API.token.set(persistedToken);
     try {
