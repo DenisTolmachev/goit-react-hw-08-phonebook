@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getItems } from 'store/contacts/contactsSelectors';
 import { addNewContact } from 'store/contacts/contactsOperations';
 import { toast } from 'react-toastify';
+
 import {
   FormStyled,
   Label,

@@ -1,4 +1,5 @@
 import { Button } from 'components/common/Button.styled';
+import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'store/auth/authOperations';
 import { getIsLLoggedIn } from 'store/auth/authSelectors';
@@ -16,6 +17,9 @@ const StartPage = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <HomeTitle>Hello, user!</HomeTitle>
       <HomeSubTitle>You are in the Phonebook app</HomeSubTitle>
       {isLoggedIn ? (
