@@ -1,7 +1,6 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-
 import { registerUser } from 'store/auth/authOperations';
 import * as yup from 'yup';
 import {

@@ -26,36 +26,31 @@ export const App = () => {
       <Suspense fallback={<LoaderSpinner />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route
-              index
-              element={
-                <PublicRoute>
-                  <Home />
-                </PublicRoute>
-              }
-            />
+            <Route index element={<PublicRoute component={<Home />} />} />
             <Route
               path="login"
               element={
-                <PublicRoute>
-                  <LoginPage />
-                </PublicRoute>
+                <PublicRoute
+                  restricted
+                  redirectTo="/contacts"
+                  component={<LoginPage />}
+                />
               }
             />
             <Route
               path="register"
               element={
-                <PublicRoute>
-                  <RegisterPage />
-                </PublicRoute>
+                <PublicRoute
+                  restricted
+                  redirectTo="/contacts"
+                  component={<RegisterPage />}
+                />
               }
             />
             <Route
               path="contacts"
               element={
-                <PrivateRoute>
-                  <ContactsPage />
-                </PrivateRoute>
+                <PrivateRoute redirectTo="/" component={<ContactsPage />} />
               }
             />
           </Route>
