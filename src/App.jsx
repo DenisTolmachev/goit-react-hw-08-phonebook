@@ -6,6 +6,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { getUserData } from 'store/auth/authOperations';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { PublicRoute } from 'components/PublicRoute';
 
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
 const Home = lazy(() => import('pages/Home/Home'));
@@ -24,10 +26,38 @@ export const App = () => {
       <Suspense fallback={<LoaderSpinner />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="contacts" element={<ContactsPage />} />
+            <Route
+              index
+              element={
+                <PublicRoute>
+                  <Home />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       </Suspense>

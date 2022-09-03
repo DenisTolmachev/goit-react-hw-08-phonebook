@@ -1,7 +1,7 @@
 import { Button } from 'components/common/Button.styled';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { Navigate } from 'react-router';
+
 import { registerUser } from 'store/auth/authOperations';
 import * as yup from 'yup';
 import {
@@ -45,7 +45,6 @@ export const RegisterForm = () => {
       password: values.password,
     };
     dispatch(registerUser(user));
-    <Navigate to="contacts" replace={true} />;
     resetForm();
   };
 
