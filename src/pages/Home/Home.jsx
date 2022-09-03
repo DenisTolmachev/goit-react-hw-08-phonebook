@@ -2,7 +2,7 @@ import { Button } from 'components/common/Button.styled';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'store/auth/authOperations';
-import { getIsLLoggedIn } from 'store/auth/authSelectors';
+import { getIsLLoggedIn, getUserName } from 'store/auth/authSelectors';
 import {
   Container,
   HomeSubTitle,
@@ -14,13 +14,17 @@ import {
 const StartPage = () => {
   const isLoggedIn = useSelector(getIsLLoggedIn);
   const dispatch = useDispatch();
+  const userName = useSelector(getUserName);
 
   return (
     <Container>
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <HomeTitle>Hello, user!</HomeTitle>
+      <HomeTitle>
+        Hello, {isLoggedIn ? <span>{userName}!</span> : <span>user!</span>}
+      </HomeTitle>
+
       <HomeSubTitle>You are in the Phonebook app</HomeSubTitle>
       {isLoggedIn ? (
         <div>

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const AuthNavStyle = styled.nav``;
-
 export const AuthLinkStyle = styled(NavLink)`
   color: ${({ theme }) => theme.colors.white};
   text-decoration: none;

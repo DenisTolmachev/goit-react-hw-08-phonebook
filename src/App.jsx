@@ -32,8 +32,6 @@ export const App = () => {
         </Routes>
       </Suspense>
 
-      {/* <ContactsPage /> */}
-
       <ToastContainer
         position="top-center"
         autoClose={2000}

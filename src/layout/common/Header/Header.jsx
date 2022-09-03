@@ -1,10 +1,9 @@
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { AppLogo } from 'components/Logo/Logo';
-import { HeaderStyle } from './Header.style';
+import { HeaderStyle, HeaderLinkStyle } from './Header.style';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { getIsLLoggedIn } from 'store/auth/authSelectors';
-import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const isLoggedIn = useSelector(getIsLLoggedIn);
@@ -12,7 +11,13 @@ export const Header = () => {
   return (
     <HeaderStyle>
       <AppLogo />
-      <Link to='/contacts' style={{color: 'white'}}>ContactsDemo</Link>
+      {isLoggedIn ? (
+        <HeaderLinkStyle to="/contacts">
+          Contacts
+        </HeaderLinkStyle>
+      ) : (
+        <></>
+      )}
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </HeaderStyle>
   );
