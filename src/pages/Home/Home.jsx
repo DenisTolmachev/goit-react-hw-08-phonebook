@@ -13,8 +13,8 @@ import {
 
 const StartPage = () => {
   const isLoggedIn = useSelector(getIsLLoggedIn);
-  const dispatch = useDispatch();
   const userName = useSelector(getUserName);
+  const dispatch = useDispatch();
 
   return (
     <Container>
