@@ -1,7 +1,7 @@
-import { AuthNav } from 'components/AuthNav/AuthNav';
-import { AppLogo } from 'components/Logo/Logo';
+import { AuthNav } from 'layout/common/AuthNav/AuthNav';
+import { AppLogo } from 'components/common/Logo/Logo';
 import { HeaderStyle, HeaderLinkStyle } from './Header.style';
-import { UserMenu } from 'components/UserMenu/UserMenu';
+import { UserMenu } from 'layout/common/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { getIsLLoggedIn } from 'store/auth/authSelectors';
 

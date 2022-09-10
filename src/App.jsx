@@ -6,11 +6,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { getUserData } from 'store/auth/authOperations';
-import { PrivateRoute } from 'components/PrivateRoute';
-import { PublicRoute } from 'components/PublicRoute';
+import { PrivateRoute } from 'hocs/PrivateRoute';
+import { PublicRoute } from 'hocs/PublicRoute';
 
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
-const Home = lazy(() => import('pages/Home/Home'));
+const Home = lazy(() => import('pages/Home'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 

@@ -4,11 +4,9 @@ import { Header } from './common/Header/Header';
 
 export const SharedLayout = () => {
   return (
-    <>
-      <Container>
-        <Header />
-        <Outlet />
-      </Container>
-    </>
+    <Container>
+      <Header />
+      <Outlet />
+    </Container>
   );
 };
