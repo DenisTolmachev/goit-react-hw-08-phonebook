@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   padding: 10px 10px;
-  margin: 5px 10px;
+  margin: 5px 0;
   font-size: ${({ theme }) => theme.fontSizes.m};
   text-transform: capitalize;
   background-color: ${({ theme }) => theme.colors.primary};

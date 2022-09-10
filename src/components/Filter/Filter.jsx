@@ -17,8 +17,6 @@ export const Filter = () => {
     dispatch(filteredContacts(e.target.value));
   };
 
-  console.log(items.length);
-
   return (
     <>
       {items.length === 0 ? (
