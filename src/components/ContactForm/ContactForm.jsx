@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getItems } from 'store/contacts/contactsSelectors';
 import { addNewContact } from 'store/contacts/contactsOperations';
 import { toast } from 'react-toastify';
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import {
   FormStyled,
   Label,
@@ -14,9 +15,6 @@ import {
   InputFeedback,
 } from 'components/common/Form.styled';
 
-const phoneRegex = RegExp(
-  /\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/
-);
 const nameRegex = RegExp(
   /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
 );
@@ -31,25 +29,12 @@ const mySchema = yup.object().shape({
     )
     .required('Name is required'),
 
-  number: yup
-    .string()
-    .length(7)
-    .matches(
-      phoneRegex,
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-    )
-    .required('Number is required'),
+  number: yup.string().length(19).required('Number is required'),
 });
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
-
-  const normalizedNumber = str => {
-    const normalizedNumber =
-      str[0] + str[1] + str[2] + '-' + str[3] + str[4] + '-' + str[5] + str[6];
-    return normalizedNumber;
-  };
 
   const contactsCheck = name => {
     const result = name.name.toLowerCase();
@@ -61,8 +46,10 @@ export const ContactForm = () => {
     const newName = {
       id: shortid.generate(),
       name: values.name,
-      number: normalizedNumber(values.number),
+      number: values.number,
     };
+
+    console.log(newName);
 
     if (contactsCheck(newName)) {
       toast.error(`${newName.name} is already in contacts`);
@@ -79,7 +66,7 @@ export const ContactForm = () => {
       validationSchema={mySchema}
       onSubmit={handleSubmit}
     >
-      {props => (
+      {({ values, handleChange, handleBlur }) => (
         <FormStyled>
           <Label>
             Name
@@ -87,8 +74,8 @@ export const ContactForm = () => {
               type="text"
               name="name"
               placeholder="Rosie Simpson"
-              value={props.values.name}
-              onChange={props.handleChange}
+              value={values.name}
+              onChange={handleChange}
             />
             <ErrorMessage
               name="name"
@@ -97,12 +84,17 @@ export const ContactForm = () => {
           </Label>
           <Label>
             Number
-            <Input
-              type="tel"
-              name="number"
-              placeholder="Enter 7 digits"
-              value={props.values.number}
-              onChange={props.handleChange}
+            <PhoneInput
+              inputProps={{
+                name: 'number',
+              }}
+              country={'ua'}
+              placeholder=""
+              value={values.number}
+              onBlur={handleBlur}
+              onChange={(phoneNumber, country, e) => {
+                handleChange(e);
+              }}
             />
             <ErrorMessage
               name="number"
