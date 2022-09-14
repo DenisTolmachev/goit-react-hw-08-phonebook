@@ -8,12 +8,10 @@ export const FormTitle = styled.h1`
 
 export const FormStyled = styled(Form)`
   max-width: 500px;
-  width: 80%;
   margin: 0 auto;
 `;
 
 export const Label = styled.label`
-  width: 100%;
   margin-bottom: 10px;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.secondary};
